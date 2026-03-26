@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'afyatrack_db',
         'USER': 'postgres',
-        'PASSWORD': '@Amalia18/11',
+        'PASSWORD': 'AfyaTrack@2026',
         'HOST': 'localhost',
         'PORT': '5432',
     }
