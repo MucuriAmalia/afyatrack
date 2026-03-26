@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Appointments</h2>
+<table border="1">
+    <tr>
+        <th>Patient</th>
+        <th>Clinic</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+        <th>EMR</th>
+    </tr>
+    {% for appt in appointments %}
+    <tr>
+        <td>{{ appt.patient.first_name }} {{ appt.patient.last_name }}</td>
+        <td>{{ appt.clinic.name }}</td>
+        <td>{{ appt.scheduled_date }}</td>
+        <td>{{ appt.scheduled_time }}</td>
+        <td>{{ appt.status }}</td>
+        <td>
+            <a href="{% url 'add_patient_record' appt.id %}">Add/View</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

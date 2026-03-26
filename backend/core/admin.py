@@ -5,7 +5,9 @@ from .models import (
     SubCounty,
     Ward,
     CommunityUnit,
-    Village
+    Village,
+    Household,
+    Patient,
 )
 
 
@@ -15,3 +17,5 @@ admin.site.register(SubCounty)
 admin.site.register(Ward)
 admin.site.register(CommunityUnit)
 admin.site.register(Village)
+admin.site.register(Household)
+admin.site.register(Patient)

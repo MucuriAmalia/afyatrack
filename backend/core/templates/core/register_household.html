@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Register Household</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<!-- jQuery for cascading dropdowns -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#id_county").change(function(){
+        var url = "{% url 'ajax_load_subcounties' %}";
+        var countyId = $(this).val();
+        $.get(url, { county: countyId }, function(data){
+            $("#id_subcounty").html('');
+            $("#id_subcounty").append('<option value="">---------</option>');
+            data.forEach(function(sub){
+                $("#id_subcounty").append('<option value="'+sub.id+'">'+sub.name+'</option>');
+            });
+            $("#id_ward").html('<option value="">---------</option>');  // reset ward
+        });
+    });
+
+    $("#id_subcounty").change(function(){
+        var url = "{% url 'ajax_load_wards' %}";
+        var subcountyId = $(this).val();
+        $.get(url, { subcounty: subcountyId }, function(data){
+            $("#id_ward").html('');
+            $("#id_ward").append('<option value="">---------</option>');
+            data.forEach(function(ward){
+                $("#id_ward").append('<option value="'+ward.id+'">'+ward.name+'</option>');
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

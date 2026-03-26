@@ -1,0 +1,27 @@
+<h2>Household Registry</h2>
+
+<a href="/households/register/">Register New Household</a>
+
+<br><br>
+
+<table border="1">
+
+<tr>
+    <th>Household Code</th>
+    <th>Head Name</th>
+    <th>Village</th>
+    <th>Phone</th>
+</tr>
+
+{% for h in households %}
+
+<tr>
+    <td>{{ h.household_code }}</td>
+    <td>{{ h.head_name }}</td>
+    <td>{{ h.village }}</td>
+    <td>{{ h.phone_number }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
