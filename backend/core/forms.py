@@ -12,9 +12,7 @@ class HouseholdForm(forms.ModelForm):
             "household_code",
             "head_name",
             "phone_number",
-            "county",
-            "subcounty",
-            "ward",
+            "village",
             "latitude",
             "longitude",
         ]

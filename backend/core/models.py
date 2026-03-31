@@ -1,4 +1,5 @@
 from django.db import models
+from core.models import Village, Household, Patient, Appointment
 
 class Country(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -67,16 +68,14 @@ class Household(models.Model):
     head_name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
 
-    # Location hierarchy
-    county = models.ForeignKey(County, on_delete=models.PROTECT)
-    subcounty = models.ForeignKey(SubCounty, on_delete=models.PROTECT)
-    ward = models.ForeignKey(Ward, on_delete=models.PROTECT)
+    # ✅ Single source of truth
+    village = models.ForeignKey(Village, on_delete=models.PROTECT)
 
     # Optional: GPS coordinates
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
 
-    # Optional: additional fields for tracking
+    # Tracking
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
